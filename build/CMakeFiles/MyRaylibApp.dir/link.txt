@@ -1,0 +1,1 @@
+/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/MyRaylibApp.dir/src/Main.cpp.o -o MyRaylibApp  /Users/michaelrichardson/git/NURBS/external/raylib/build/libraylib.a -framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo
