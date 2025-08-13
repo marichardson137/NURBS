@@ -8,21 +8,45 @@ set(RAYLIB_DIR "${CMAKE_SOURCE_DIR}/external/raylib")
 set(RAYLIB_INCLUDE_DIR "${RAYLIB_DIR}/include")
 set(RAYLIB_LIB_DIR "${RAYLIB_DIR}/build")
 
+# Executable name
+set(EXECUTABLE_NAME "App")
+
 # Add executable
-add_executable(MyRaylibApp src/Main.cpp)
+add_executable(${EXECUTABLE_NAME} src/Main.cpp)
 
 # Include raylib headers
-target_include_directories(MyRaylibApp PRIVATE ${RAYLIB_INCLUDE_DIR})
+target_include_directories(${EXECUTABLE_NAME} PRIVATE ${RAYLIB_INCLUDE_DIR})
 
-# Link raylib static library
-target_link_libraries(MyRaylibApp PRIVATE
-    ${RAYLIB_LIB_DIR}/libraylib.a
-)
+# Platform-specific linking
+if(APPLE)
+    message(STATUS "Configuring for macOS")
 
-# Link required macOS frameworks
-target_link_libraries(MyRaylibApp PRIVATE
-    "-framework OpenGL"
-    "-framework Cocoa"
-    "-framework IOKit"
-    "-framework CoreVideo"
-)
+    # Link static raylib (.a)
+    target_link_libraries(${EXECUTABLE_NAME} PRIVATE
+        ${RAYLIB_LIB_DIR}/libraylib.a
+    )
+
+    # macOS frameworks
+    target_link_libraries(${EXECUTABLE_NAME} PRIVATE
+        "-framework OpenGL"
+        "-framework Cocoa"
+        "-framework IOKit"
+        "-framework CoreVideo"
+    )
+
+elseif(WIN32)
+    message(STATUS "Configuring for Windows")
+
+    # Link static raylib (.lib)
+    target_link_libraries(${EXECUTABLE_NAME} PRIVATE
+        ${RAYLIB_LIB_DIR}/raylib.lib
+    )
+
+    # Windows-specific libraries required by raylib
+    target_link_libraries(${EXECUTABLE_NAME} PRIVATE
+        winmm
+        gdi32
+        opengl32
+        shell32
+    )
+endif()

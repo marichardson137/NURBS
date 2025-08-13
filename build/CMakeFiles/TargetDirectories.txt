@@ -1,3 +1,0 @@
-/Users/michaelrichardson/git/NURBS/build/CMakeFiles/MyRaylibApp.dir
-/Users/michaelrichardson/git/NURBS/build/CMakeFiles/edit_cache.dir
-/Users/michaelrichardson/git/NURBS/build/CMakeFiles/rebuild_cache.dir

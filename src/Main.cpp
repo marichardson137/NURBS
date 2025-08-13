@@ -2,10 +2,10 @@
 
 int main() {
     // Initialize window
-    const int screenWidth = 800;
-    const int screenHeight = 450;
+    const int screenWidth = 1920;
+    const int screenHeight = 1080;
 
-    InitWindow(screenWidth, screenHeight, "raylib - basic window");
+    InitWindow(screenWidth, screenHeight, "Parametric Modeling");
 
     SetTargetFPS(60); // Set the target frames-per-second
 
@@ -13,7 +13,7 @@ int main() {
     {
         BeginDrawing();
             ClearBackground(RAYWHITE);
-            DrawText("Hello, raylib!", 190, 200, 20, LIGHTGRAY);
+            DrawText("Hello, raylib!", 190, 200, 20, BLACK);
         EndDrawing();
     }
 
